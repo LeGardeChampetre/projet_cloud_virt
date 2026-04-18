@@ -1,0 +1,5 @@
+services:
+  frontend:
+    image: themuffinman/image-web:latest
+    ports:
+      - "3000:3000"
