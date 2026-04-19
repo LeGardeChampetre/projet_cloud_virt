@@ -1,6 +1,6 @@
 services:
   backend:
-    image: themuffinman/image-api:latest
+    image: themuffinman1/image-api:latest
     command: uv run --no-dev gunicorn --workers 4 --bind 0.0.0.0:8080 image_api.web:app
     ports:
       - "8080:8080"
@@ -13,7 +13,7 @@ services:
       - AWS_REGION_NAME=${AWS_REGION_NAME}
 
   worker:
-    image: themuffinman/image-api:latest
+    image: themuffinman1/image-api:latest
     command: uv run --no-dev celery --app image_api.worker.app worker
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
