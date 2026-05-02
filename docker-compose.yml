@@ -1,0 +1,29 @@
+services:
+  backend:
+    image: image-api
+    command: uv run --no-dev gunicorn --workers 4 --bind 0.0.0.0:8080 image_api.web:app
+    ports:
+      - "8080:8080"
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - AWS_REGION_NAME=${AWS_REGION_NAME}
+
+  worker:
+    image: image-api
+    command: uv run --no-dev celery --app image_api.worker.app worker
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - AWS_REGION_NAME=${AWS_REGION_NAME}
+
+  frontend:
+    image: image-web
+    ports:
+      - "3000:3000"

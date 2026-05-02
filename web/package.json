@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "serve dist"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.21",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-dropzone": "^15.0.0",
+    "serve": "^14.2.5"
+  },
+  "devDependencies": {
+    "@tsconfig/vite-react": "^7.0.2",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}
